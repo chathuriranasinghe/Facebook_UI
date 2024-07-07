@@ -8,7 +8,7 @@ class PostListView extends StatelessWidget {
   });
 
   final String profilePic;
-  final List<PostModel> posts = [
+  List<PostModel> posts = [
     PostModel(
         post: "assets/CoverPhoto.jpg",
         caption: "Every step feels lighter when we're holding hands.",
@@ -18,8 +18,7 @@ class PostListView extends StatelessWidget {
         userImage: "assets/Pasindu.jpg",
         userName: "Pasindu Weerasinghe"),
     PostModel(
-        post:
-            "https://pbs.twimg.com/profile_images/541867053351583744/rcxem8NU_400x400.jpeg",
+        post: "assets/Mahinda.jpg",
         caption:
             "I loved you then, I love you still, always have, always will.",
         time: "2m",
@@ -31,153 +30,157 @@ class PostListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ListView.builder(
-          shrinkWrap: true,
-          itemCount: posts.length,
-          itemBuilder: (context, index) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Row(
-                    children: [
-                      Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(color: Colors.blue, width: 2)),
-                        child: CircleAvatar(
-                          backgroundImage: AssetImage(posts[index].userImage),
+    return SingleChildScrollView(
+      child: Column(
+        children: List.generate(posts.length, (index) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Row(
+                  children: [
+                    Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(color: Colors.blue, width: 2)),
+                      child: CircleAvatar(
+                        backgroundImage: AssetImage(posts[index].userImage),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 7,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          posts[index].userName,
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              height: 0.9),
                         ),
-                      ),
-                      SizedBox(
-                        width: 7,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            posts[index].userName,
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                                height: 0.9),
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                posts[index].type,
-                                style:
-                                    TextStyle(color: Colors.grey, fontSize: 14),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                posts[index].time,
-                                style:
-                                    TextStyle(color: Colors.grey, fontSize: 14),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Icon(
-                                Icons.public,
-                                size: 18,
-                                color: Colors.grey,
-                              )
-                            ],
-                          ),
-                        ],
-                      ),
-                      Spacer(
-                        flex: 1,
-                      ),
-                      Icon(
-                        Icons.more_horiz,
-                        color: Colors.white,
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Icon(
-                        Icons.close,
-                        color: Colors.white,
-                      )
-                    ],
-                  ),
+                        Row(
+                          children: [
+                            Text(
+                              posts[index].type,
+                              style:
+                                  TextStyle(color: Colors.grey, fontSize: 14),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              posts[index].time,
+                              style:
+                                  TextStyle(color: Colors.grey, fontSize: 14),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Icon(
+                              Icons.public,
+                              size: 18,
+                              color: Colors.grey,
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                    Spacer(
+                      flex: 1,
+                    ),
+                    Icon(
+                      Icons.more_horiz,
+                      color: Colors.white,
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Icon(
+                      Icons.close,
+                      color: Colors.white,
+                    )
+                  ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 4, bottom: 8),
-                  child: Text(
-                    posts[index].caption,
-                    style: TextStyle(
-                        color: Colors.white, fontSize: 15, height: 0.9),
-                  ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 4, bottom: 8),
+                child: Text(
+                  posts[index].caption,
+                  style:
+                      TextStyle(color: Colors.white, fontSize: 15, height: 0.9),
                 ),
-                Image.asset(
-                  posts[index].post,
-                  fit: BoxFit.cover,
+              ),
+              Image.asset(
+                posts[index].post,
+                fit: BoxFit.cover,
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: Row(
+                  children: [
+                    Text(
+                      "50 likes",
+                      style: TextStyle(color: Colors.blue),
+                    ),
+                    Spacer(
+                      flex: 1,
+                    ),
+                    Text(
+                      "15 comments",
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                    SizedBox(
+                      width: 8,
+                    ),
+                    Text(
+                      "2 shares",
+                      style: TextStyle(color: Colors.grey),
+                    )
+                  ],
                 ),
-                SizedBox(
-                  height: 5,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    ActionButton(
+                      icon: Icons.thumb_up_alt_outlined,
+                      text: "Like",
+                    ),
+                    ActionButton(
+                      icon: Icons.comment,
+                      text: "Comment",
+                    ),
+                    ActionButton(
+                      icon: Icons.offline_share,
+                      text: "Send",
+                    ),
+                    ActionButton(
+                      icon: Icons.reply,
+                      text: "Share",
+                    ),
+                  ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: Row(
-                    children: [
-                      Text(
-                        "50 likes",
-                        style: TextStyle(color: Colors.blue),
-                      ),
-                      Spacer(
-                        flex: 1,
-                      ),
-                      Text(
-                        "15 comments",
-                        style: TextStyle(color: Colors.grey),
-                      ),
-                      SizedBox(
-                        width: 8,
-                      ),
-                      Text(
-                        "2 shares",
-                        style: TextStyle(color: Colors.grey),
-                      )
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      ActionButton(
-                        icon: Icons.thumb_up_alt_outlined,
-                        text: "Like",
-                      ),
-                      ActionButton(
-                        icon: Icons.comment,
-                        text: "Comment",
-                      ),
-                      ActionButton(
-                        icon: Icons.offline_share,
-                        text: "Send",
-                      ),
-                      ActionButton(
-                        icon: Icons.reply,
-                        text: "Share",
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            );
-          }),
+              ),
+              Divider(
+                color: Colors.black38,
+                thickness: 5,
+                height: 20,
+              ),
+            ],
+          );
+        }),
+      ),
     );
   }
 }
