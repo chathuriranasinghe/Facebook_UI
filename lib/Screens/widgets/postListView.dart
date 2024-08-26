@@ -155,7 +155,9 @@ class PostListView extends StatelessWidget {
                   children: [
                     ActionButton(
                       icon: Icons.thumb_up_alt_outlined,
+                      iconColor: Colors.blue,
                       text: "Like",
+                      textColor: Colors.blue,
                     ),
                     ActionButton(
                       icon: Icons.comment,
@@ -186,10 +188,17 @@ class PostListView extends StatelessWidget {
 }
 
 class ActionButton extends StatelessWidget {
-  const ActionButton({super.key, required this.icon, required this.text});
+  const ActionButton(
+      {super.key,
+      required this.icon,
+      required this.text,
+      this.iconColor = Colors.grey,
+      this.textColor = Colors.grey});
 
   final IconData icon;
   final String text;
+  final Color iconColor;
+  final Color textColor;
 
   @override
   Widget build(BuildContext context) {
@@ -199,7 +208,7 @@ class ActionButton extends StatelessWidget {
           children: [
             Icon(
               icon,
-              color: Colors.grey,
+              color: iconColor,
             ),
             SizedBox(
               width: 3,
@@ -207,9 +216,7 @@ class ActionButton extends StatelessWidget {
             Text(
               text,
               style: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold),
+                  color: textColor, fontSize: 14, fontWeight: FontWeight.bold),
             )
           ],
         ),
